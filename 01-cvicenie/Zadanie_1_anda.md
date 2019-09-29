@@ -27,8 +27,9 @@
 ### Charakteristika
 
 JavaScript knižnica na vloženie AR do browsera. 
-Používa knižnicu artoolkit ktorá funguje pomocou markerov.
-Keďže je umiestnená priamo v Browseri, je možné ju spustiť aj na prehliadačoch pre Android a iOS
+Používa knižnicu artoolkit ktorá funguje pomocou markerov, zároveň používa aj three.js.
+Keďže je umiestnená priamo v prehliadači, je možné ju spustiť aj na prehliadačoch pre Android a iOS. Snahou je priniesť
+AR na všetky prehliadače pri vysokom FPS s jednoduchou implementáciou
 
 ## Colyseus
 
@@ -39,7 +40,9 @@ Keďže je umiestnená priamo v Browseri, je možné ju spustiť aj na prehliada
 ### Charakteristika
 
 Mutliplayer Server postavený nad Node.js, umožňuje integráciu s viacerými klientami, napríklad pomocou Unity, HTML5 a podobne.
-Používa Web Sockety na komunikáciu medzi serverom a klientami, vytvorí room pre každý socket a spracuváva komunikáciu
+Používa Web Sockety na komunikáciu medzi serverom a klientami, vytvorí room pre každý socket a spracuváva komunikáciu.
+Prínos tejto knižnice spočíva v uľahčení nastavovania server-client komunikácie, keďže poskytuje implementáciu aj pre server
+ aj pre klient.
 
 ## Tone.js
 
@@ -58,6 +61,9 @@ Zahratie napísaných nôt v definovaných intervaloch
 
 ### Charakteristika
 
-JavaScript knižnica na produkovanie a syntetizovanie zvukov a tónov. Je umiestnená v browseri, kde vieme vyprodukovať rôzne tóny a modifikovať zvuk.
+JavaScript knižnica na produkovanie a syntetizovanie zvukov a tónov. 
+Je umiestnená v browseri, kde vieme vyprodukovať rôzne tóny a modifikovať zvuk.
+Jej prínos pre svet JS je, že umožňuje naprogramovať hudbu, bez potreby nejakého drahého software, či reálneho nástroja
+
 
 
