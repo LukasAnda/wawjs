@@ -43,10 +43,15 @@ Mutliplayer Server postavený nad Node.js, umožňuje integráciu s viacerými k
 Používa Web Sockety na komunikáciu medzi serverom a klientami, vytvorí room pre každý socket a spracuváva komunikáciu.
 Prínos tejto knižnice spočíva v uľahčení nastavovania server-client komunikácie, keďže poskytuje implementáciu aj pre server
  aj pre klient.
+Jeho veľkou výhodou je implementovanie Redis databázy, ktorá umožňuje skvelé horizontálne škálovanie, keďže je veľmi rýchla
+Backend je postavený na Express frameworku. Keďže je to knižnica, na stránke ktorá je vyššie spomenutá sú aj ukázané hry,
+ktoré boli vytvorené. 
 
 ## Tone.js
 
 ### Ukážka aplikácie
+<https://tonejs.github.io/>
+
 Zahratie napísaných nôt v definovaných intervaloch
 
     var synth = new Tone.FMSynth().toMaster()
@@ -58,12 +63,26 @@ Zahratie napísaných nôt v definovaných intervaloch
     synth.triggerAttackRelease('B4', '16n', Tone.Time('2n') + Tone.Time('8t'))
     synth.triggerAttackRelease('G4', '16', Tone.Time('2n') + Tone.Time('8t')*2)
     synth.triggerAttackRelease('E4', '2n', '0:3')
+    
+Zaujímavé je napríklad zobrazenie jednoduchého klavíra
+
+    const synth = new Tone.AMSynth().toMaster()
+    
+    //attach a listener to the keyboard events
+    document.querySelector('tone-keyboard').addEventListener('noteon', e => {
+      synth.triggerAttack(e.detail.name)
+    })
+    
+    document.querySelector('tone-keyboard').addEventListener('noteoff', e => {
+      synth.triggerRelease()
+    })
 
 ### Charakteristika
 
 JavaScript knižnica na produkovanie a syntetizovanie zvukov a tónov. 
 Je umiestnená v browseri, kde vieme vyprodukovať rôzne tóny a modifikovať zvuk.
-Jej prínos pre svet JS je, že umožňuje naprogramovať hudbu, bez potreby nejakého drahého software, či reálneho nástroja
+Jej prínos pre svet JS je, že umožňuje naprogramovať hudbu, bez potreby nejakého drahého software, či reálneho nástroja.
+Bolo by napríklad možné, zložiť celú skladbu ako jeden skript.
 
 
 
