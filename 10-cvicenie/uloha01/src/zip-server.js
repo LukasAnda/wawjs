@@ -1,6 +1,6 @@
 const http = require("http");
 const fs = require("fs");
-const {pipeline} = require("stream")
+const {pipeline} = require("stream");
 
 const zlib = require("zlib");
 const {
@@ -32,6 +32,7 @@ function zip_server() {
 
                 let output = fs.createWriteStream(fileName);
 
+                //Je tu toto treba inak sa neskopci vacsi file
                 output.on("finish", () => {
                     pipeline(
                         fs.createReadStream(fileName),
