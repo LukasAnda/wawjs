@@ -1,5 +1,5 @@
 {
-  "name": "uloha02",
+  "name": "ulohy",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,11 +7,16 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/bom/"
+    "test": "mocha --color ./test",
+    "start": "node ./src/sonar-rules-cli.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "request": "^2.88.0"
+  },
   "devDependencies": {
     "mocha": "^6.2.2"
   }
