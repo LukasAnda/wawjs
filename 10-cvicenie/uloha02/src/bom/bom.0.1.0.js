@@ -15,8 +15,7 @@ const bufLength = (bufs) =>
     bufs.reduce((a, { length }) => a + length, 0);
 const hasBom = (buf) => buf.slice(0, 3).equals(bom);
 
-class AddBom extends Transform {
-
+class BomTransform extends Transform{
     constructor() {
         super();
         this._bomDone = false;
@@ -37,47 +36,26 @@ class AddBom extends Transform {
             this._pushBuffered();
         cb();
     }
-    _pushBuffered() {
-        let chunk = Buffer.concat([...this._buff]);
-        if (!hasBom(chunk)) this.push(bom);
+
+    _pushChunk(chunk){
         this.push(chunk);
         this._bomDone = true;
         this._buff = null;
     }
 }
 
-class RemoveBom extends Transform {
-
-    constructor() {
-        super();
-        this._buff = [];
+class AddBom extends BomTransform{
+    _pushBuffered() {
+        let chunk = Buffer.concat([...this._buff]);
+        if (!hasBom(chunk)) this.push(bom);
+        this._pushChunk(chunk)
     }
+}
 
-    _transform(chunk, enc, cb) {
-        if (this._bomRemoved){
-            return cb(null, chunk);
-        }
-
-        this._buff.push(chunk);
-        if (bufLength(this._buff) >= 3)
-            this._pushBuffered();
-
-        cb();
-
-    }
-
-    _flush(cb) {
-        if (!this._bomRemoved)
-            this._pushBuffered();
-        cb();
-    }
-
+class RemoveBom extends BomTransform{
     _pushBuffered() {
         let chunk = Buffer.concat([...this._buff]);
         if (hasBom(chunk)) chunk = chunk.slice(3);
-        this.push(chunk);
-        this._bomRemoved = true;
-        this._buff = null;
+        this._pushChunk(chunk)
     }
-
 }
